@@ -31,7 +31,7 @@
    ```
 
 4. **Create a super Admin or change the user role to SuperAdmin**.
-5. **After creating users, you can insert company data. To add companies to the PostgreSQL database directly through pgAdmin 4, you will need to run SQL queries.**
+5. **After creating users(at least 5), you can insert company data. To add companies to the PostgreSQL database directly through pgAdmin 4, you will need to run SQL queries.**
 ```
 CREATE TABLE IF NOT EXISTS "Companies" (
     id SERIAL PRIMARY KEY,
@@ -96,4 +96,6 @@ INSERT INTO "Companies" (name, service, capital, logo, location, "ownerId") VALU
 
 - Open your browser and navigate to `http://localhost:5173/` to see the application.
 - The backend server will run on `http://localhost:5000`.
+
+![Illustration for the project](https://github.com/Vitaliy-Mazurenko/Dashboard-App/raw/main/demo.gif)
    
