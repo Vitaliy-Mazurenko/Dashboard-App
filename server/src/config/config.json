@@ -1,0 +1,17 @@
+{
+  "development": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "url": "postgres://postgres:postgres@localhost:5432/dashboard"
+  },
+  "test": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "url": "postgres://postgres:postgres@localhost:5432/dashboard"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "url": "postgres://postgres:postgres@localhost:5432/dashboard"
+  }
+} 
