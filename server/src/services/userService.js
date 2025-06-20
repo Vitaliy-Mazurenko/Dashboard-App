@@ -1,4 +1,5 @@
 import { User } from '../models/index.js';
+import bcrypt from 'bcryptjs';
 
 const getAll = async () => {
   return User.findAll({ attributes: { exclude: ['password'] } });
@@ -9,6 +10,9 @@ const getById = async (id) => {
 };
 
 const update = async (id, data) => {
+  if (data.password) {
+    data.password = await bcrypt.hash(data.password, 10);
+  }
   await User.update(data, { where: { id } });
   return getById(id);
 };
