@@ -1,6 +1,7 @@
 import authService from '../services/authService.js';
 import jwt from 'jsonwebtoken';
-import { RefreshToken, User } from '../models/index.js';
+import bcrypt from 'bcryptjs';
+import { RefreshToken, User } from '../db/models/index.js';
 
 export const register = async (req, res) => {
   try {

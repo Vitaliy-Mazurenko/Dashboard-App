@@ -1,4 +1,4 @@
-import { Company } from '../models/index.js';
+import { Company } from '../db/models/index.js';
 import { Op } from 'sequelize';
 
 const getAll = async (query = {}, userFilter = {}) => {

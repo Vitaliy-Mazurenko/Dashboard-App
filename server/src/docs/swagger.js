@@ -21,6 +21,25 @@
  *           enum: [SuperAdmin, Admin, User]
  *         avatar:
  *           type: string
+ *     UserCreate:
+ *       type: object
+ *       required:
+ *         - name
+ *         - email
+ *         - password
+ *         - role
+ *       properties:
+ *         name:
+ *           type: string
+ *         email:
+ *           type: string
+ *           format: email
+ *         password:
+ *           type: string
+ *           format: password
+ *         role:
+ *           type: string
+ *           enum: [SuperAdmin, Admin, User]
  *     Company:
  *       type: object
  *       properties:
@@ -38,6 +57,23 @@
  *           type: string
  *         ownerId:
  *           type: integer
+ *     CompanyPayload:
+ *       type: object
+ *       required:
+ *         - name
+ *         - service
+ *         - capital
+ *       properties:
+ *         name:
+ *           type: string
+ *         service:
+ *           type: string
+ *         capital:
+ *           type: number
+ *         logo:
+ *           type: string
+ *         location:
+ *           type: string
  *     History:
  *       type: object
  *       properties:
@@ -176,6 +212,24 @@
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/User'
+ *   post:
+ *     summary: Create user (Admin/SuperAdmin)
+ *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UserCreate'
+ *     responses:
+ *       201:
+ *         description: User created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
  */
 
 /**
@@ -228,6 +282,27 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
+ *   delete:
+ *     summary: Delete user
+ *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: User deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
  */
 
 /**
@@ -364,6 +439,88 @@
  *                   type: integer
  *                 limit:
  *                   type: integer
+ *   post:
+ *     summary: Create company
+ *     tags: [Companies]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CompanyPayload'
+ *     responses:
+ *       201:
+ *         description: Company created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Company'
+ * /companies/{id}:
+ *   get:
+ *     summary: Get company by id
+ *     tags: [Companies]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Company data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Company'
+ *   put:
+ *     summary: Update company
+ *     tags: [Companies]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CompanyPayload'
+ *     responses:
+ *       200:
+ *         description: Company updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Company'
+ *   delete:
+ *     summary: Delete company
+ *     tags: [Companies]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Company deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
  */
 
 /**

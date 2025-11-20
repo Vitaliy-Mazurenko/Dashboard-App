@@ -1,4 +1,4 @@
-import { User, Company } from '../models/index.js';
+import { User, Company } from '../db/models/index.js';
 import { Op } from 'sequelize';
 
 const getAdminStats = async () => {

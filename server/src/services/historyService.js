@@ -1,4 +1,4 @@
-import { History, User } from '../models/index.js';
+import { History, User } from '../db/models/index.js';
 
 const add = async ({ userId, action, entity, entityId }) => {
   return History.create({ userId, action, entity, entityId, timestamp: new Date() });

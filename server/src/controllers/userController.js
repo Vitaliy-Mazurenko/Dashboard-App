@@ -1,8 +1,9 @@
 import userService from '../services/userService.js';
 import fs from 'fs';
 import path from 'path';
-import { User } from '../models/index.js';
+import { User } from '../db/models/index.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export const getAllUsers = async (req, res) => {
   try {

@@ -1,11 +1,11 @@
 {
   "name": "company-dashboard-server",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "migrate": "sequelize db:migrate --config src/config/config.json  --migrations-path src/migrations",
     "seed": "sequelize db:seed:all"
   },

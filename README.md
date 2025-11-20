@@ -97,5 +97,10 @@ INSERT INTO "Companies" (name, service, capital, logo, location, "ownerId") VALU
 - Open your browser and navigate to `http://localhost:5173/` to see the application.
 - The backend server will run on `http://localhost:5000`.
 
+4. **Open Swagger UI**:
+Once the server is running, navigate to `http://localhost:5000/docs` 
+in your browser.
+
+
 ![Illustration for the project](https://github.com/Vitaliy-Mazurenko/Dashboard-App/raw/main/demo.gif)
    

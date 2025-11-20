@@ -3,7 +3,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-import { sequelize } from './src/config/db.js';
+import { sequelize } from './src/db/db.js';
+import { PORT } from './src/utils/env.js';
+import HttpError from './src/utils/HttpError.js';
 import authRoutes from './src/routes/auth.js';
 import protectedRoutes from './src/routes/protected.js';
 import userRoutes from './src/routes/users.js';
@@ -15,7 +17,6 @@ import path from 'path';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -34,7 +35,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ['./src/routes/*.js', './src/models/*.js', './src/docs/swagger.js'],
+  apis: ['./src/routes/*.js', './src/db/models/*.js', './src/docs/swagger.js'],
 };
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
