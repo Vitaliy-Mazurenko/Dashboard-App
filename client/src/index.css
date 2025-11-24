@@ -62,12 +62,11 @@ li {
 }
 label {
   margin-right: 7px;
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 input {
   margin-bottom: 7px;
-  height: 24px;
-  font-size: 1.2em;
+  height: 20px;
 }
 .button-psw {
   background: rgb(74, 144, 226);

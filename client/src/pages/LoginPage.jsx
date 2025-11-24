@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import api from '../api/axios';
 import { useToaster } from '../components/Toaster';
+import authService from '../utils/authService';
 
 const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -19,8 +20,10 @@ export default function LoginPage() {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         const res = await api.post('/auth/login', values);
-        localStorage.setItem('accessToken', res.data.accessToken);
-        localStorage.setItem('refreshToken', res.data.refreshToken);
+        authService.setTokens({
+          accessToken: res.data.accessToken,
+          refreshToken: res.data.refreshToken,
+        });
         showToast('Login successful', 'success');
         navigate('/dashboard');
       } catch (e) {

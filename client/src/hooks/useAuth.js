@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
+import authService from '../utils/authService';
 
 export function useAuth() {
-  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('accessToken'));
+  const [state, setState] = useState({
+    isAuthenticated: authService.isAuthenticated(),
+    user: authService.getCurrentUser(),
+  });
 
   useEffect(() => {
-    const handler = () => setIsAuthenticated(!!localStorage.getItem('accessToken'));
-    window.addEventListener('storage', handler);
-    return () => window.removeEventListener('storage', handler);
+    return authService.subscribe((snapshot) => setState(snapshot));
   }, []);
 
-  return { isAuthenticated };
-} 
+  return state;
+}

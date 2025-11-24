@@ -3,13 +3,12 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import api from '../api/axios';
 import { useToaster } from '../components/Toaster';
 import Navigation from '../components/Navigation';
+import { useAuth } from '../hooks/useAuth';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-
 export default function ProfilePage() {
-
-  const token = localStorage.getItem('accessToken');
-  const userId = token ? JSON.parse(atob(token.split('.')[1])).id : null;
+  const { user } = useAuth();
+  const userId = user?.id;
   const queryClient = useQueryClient();
   const fileInputRef = useRef();
   const { showToast } = useToaster();
@@ -33,10 +32,8 @@ export default function ProfilePage() {
     onError: () => showToast('Update failed', 'error'),
   });
 
-
   const passwordMutation = useMutation({
     mutationFn: (values) => api.put(`/users/${userId}`, values),
-
 
     onSuccess: () => showToast('Password changed', 'success'),
     onError: () => showToast('Password change failed', 'error'),

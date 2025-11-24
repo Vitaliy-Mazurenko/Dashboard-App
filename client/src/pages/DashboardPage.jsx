@@ -199,7 +199,8 @@ export default function DashboardPage() {
                   </div>
                   {!editUser && (
                     <div>
-                      <label>Password</label>
+                      <label style={{
+                  color: 'black'}}>Password</label>
                       <input name="password" value={form.password} onChange={handleFormChange} required type="password" />
                     </div>
                   )}

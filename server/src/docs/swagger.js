@@ -1,11 +1,6 @@
 /**
  * @swagger
  * components:
- *   securitySchemes:
- *     BearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
  *   schemas:
  *     User:
  *       type: object
@@ -201,8 +196,6 @@
  *   get:
  *     summary: Get all users (Admin/SuperAdmin)
  *     tags: [Users]
- *     security:
- *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: List of users
@@ -215,8 +208,6 @@
  *   post:
  *     summary: Create user (Admin/SuperAdmin)
  *     tags: [Users]
- *     security:
- *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -238,8 +229,6 @@
  *   get:
  *     summary: Get user by id
  *     tags: [Users]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -261,8 +250,6 @@
  *   put:
  *     summary: Update user
  *     tags: [Users]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -285,8 +272,6 @@
  *   delete:
  *     summary: Delete user
  *     tags: [Users]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -311,8 +296,6 @@
  *   patch:
  *     summary: Upload or update user avatar
  *     tags: [Users]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -349,8 +332,6 @@
  *   delete:
  *     summary: Delete user avatar
  *     tags: [Users]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -375,8 +356,6 @@
  *   get:
  *     summary: Get all companies (with filters, sort, pagination)
  *     tags: [Companies]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: query
  *         name: name
@@ -442,8 +421,6 @@
  *   post:
  *     summary: Create company
  *     tags: [Companies]
- *     security:
- *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -461,8 +438,6 @@
  *   get:
  *     summary: Get company by id
  *     tags: [Companies]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -479,8 +454,6 @@
  *   put:
  *     summary: Update company
  *     tags: [Companies]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -503,8 +476,6 @@
  *   delete:
  *     summary: Delete company
  *     tags: [Companies]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -529,8 +500,6 @@
  *   patch:
  *     summary: Upload or update company logo
  *     tags: [Companies]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -567,8 +536,6 @@
  *   delete:
  *     summary: Delete company logo
  *     tags: [Companies]
- *     security:
- *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -593,8 +560,6 @@
  *   get:
  *     summary: Get user/admin history
  *     tags: [History]
- *     security:
- *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: List of history records
@@ -612,8 +577,6 @@
  *   get:
  *     summary: Get dashboard statistics
  *     tags: [Dashboard]
- *     security:
- *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: Dashboard data

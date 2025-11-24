@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import authService from '../utils/authService';
 
 export default function Navigation() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
+    authService.logout({ redirect: false });
     navigate('/login');
   };
 

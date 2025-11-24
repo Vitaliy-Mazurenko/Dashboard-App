@@ -4,6 +4,8 @@ import api from '../api/axios';
 import { Link } from 'react-router-dom';
 import { useToaster } from '../components/Toaster';
 import Navigation from '../components/Navigation';
+import { useAuth } from '../hooks/useAuth';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const sortFields = [
   { value: 'name', label: 'Name' },
@@ -18,7 +20,7 @@ function CompanyModal({ open, onClose, onSubmit, initial }) {
   return (
     <div style={{ position: 'fixed', top:0, left:0, right:0, bottom:0, background: 'rgba(0,0,0,0.2)', zIndex: 10 }}>
       <div style={{ background: '#fff', maxWidth: 400, margin: '80px auto', padding: 24, borderRadius: 8 }}>
-      <h3 style={{ color: 'black'}}>{initial ? 'Edit Company' : 'Create Company'}</h3>
+        <h3>{initial ? 'Edit Company' : 'Create Company'}</h3>
         <form onSubmit={e => { e.preventDefault(); onSubmit(form); }}>
           <div><input placeholder="Name" value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} required /></div>
           <div><input placeholder="Service" value={form.service} onChange={e => setForm(f => ({...f, service: e.target.value}))} required /></div>
@@ -35,6 +37,7 @@ function CompanyModal({ open, onClose, onSubmit, initial }) {
 }
 
 export default function CompaniesListPage() {
+  const { user } = useAuth();
   const [filters, setFilters] = useState({
     name: '',
     service: '',
@@ -64,17 +67,8 @@ export default function CompaniesListPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editCompany, setEditCompany] = useState(null);
 
-  const token = localStorage.getItem('accessToken');
-  let userId = null, userRole = null;
-  if (token) {
-    try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      userId = payload.id;
-      userRole = payload.role;
-    } catch (error) {
-      console.error('Failed to parse JWT token:', error);
-    }
-  }
+  const userId = user?.id || null;
+  const userRole = user?.role || null;
 
   const createPost = async (values) => {
     return await api.post('/companies', values);
@@ -113,7 +107,6 @@ export default function CompaniesListPage() {
       onError: () => showToast('Delete failed', 'error'),
     }
   );
-
 
   const handleChange = e => {
     setFilters(f => ({ ...f, [e.target.name]: e.target.value, page: 1 }));

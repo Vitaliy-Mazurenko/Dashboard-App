@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import api from '../api/axios';
 import { useToaster } from '../components/Toaster';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import { useAuth } from '../hooks/useAuth';
 import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
 const icon = L.icon({ iconUrl: "/img/marker-icon.png" });
@@ -26,10 +27,8 @@ export default function CompanyDetailPage() {
   const [editMode, setEditMode] = useState(false);
   const [mapPosition, setMapPosition] = useState(null);
   const { showToast } = useToaster();
-
-
-  const token = localStorage.getItem('accessToken');
-  const userId = token ? JSON.parse(atob(token.split('.')[1])).id : null;
+  const { user } = useAuth();
+  const userId = user?.id;
 
   const { data, isLoading } = useQuery({
     queryKey: ['company', id],
@@ -39,6 +38,7 @@ export default function CompanyDetailPage() {
   }
  }
 );
+
 
   const updateMutation = useMutation({
     mutationFn:  (values) => api.put(`/companies/${id}`, values),
@@ -166,4 +166,4 @@ export default function CompanyDetailPage() {
       )}
     </div>
   );
-}
+} 
