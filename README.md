@@ -23,7 +23,7 @@
    ```bash
    npm install
    ```
-3. **Create a database by name: dashboard (I use pgAgmin4)**.
+3. **Create a database by name: dashboard (I use pgAdmin4)**.
 4. **To run migrations that create tables in a PostgreSQL database in Node.js**
 
    ```bash
